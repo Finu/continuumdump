@@ -8,14 +8,14 @@ namespace ContinuumDump
 
         public List<CSVParam> Parameters
         {
-            get {return parameters;}
+            get { return parameters; }
         }
 
         public SingleDumpModel(Dictionary<string, string> DataParam)
         {
-            if (DataParam!=null)
+            if (DataParam != null)
             {
-                foreach(var pair in DataParam)
+                foreach (var pair in DataParam)
                 {
                     parameters.Add(new CSVParam(pair.Key, pair.Value));
                 }

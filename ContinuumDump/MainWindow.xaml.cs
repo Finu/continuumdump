@@ -1,19 +1,8 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ContinuumDump.Common;
+using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ContinuumDump
 {
@@ -22,13 +11,12 @@ namespace ContinuumDump
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DataTemplate dataTemplate = new DataTemplate();
-        private DataToReplaceWrapper dataWrapper = new DataToReplaceWrapper();
+        private Wrapper wrapper = new Wrapper();
 
         public MainWindow()
         {
             InitializeComponent();
-            dgData.DataContext = dataWrapper;
+            dgData.DataContext = wrapper;
         }
 
         private string OpenFileDialog(string DefaultName, string Extension, string Filter)
@@ -37,9 +25,9 @@ namespace ContinuumDump
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.FileName = DefaultName; 
             dlg.DefaultExt = Extension; 
-            dlg.Filter = Filter;  
+            dlg.Filter = Filter;
 
-            Nullable<bool> result = dlg.ShowDialog();
+            bool? result = dlg.ShowDialog();
 
             if (result == true)
             {
@@ -52,7 +40,7 @@ namespace ContinuumDump
         {
             dgData.Columns.Clear();
             int i = 0;
-            foreach(string param in dataWrapper.DataParam)
+            foreach(string param in wrapper.DataParam)
             {
                 DataGridTextColumn column = new DataGridTextColumn();
                 column.Header = param;
@@ -64,19 +52,20 @@ namespace ContinuumDump
 
         private void btImportTemplate_Click(object sender, RoutedEventArgs e)
         {
-            dataTemplate.LoadTemplateFromFile(OpenFileDialog("Template", ".dmp", "Template (.dmp)|*.dmp"));
-            dataTemplate.FillRichTextBox(rtbTemplateText);
+            string filePath = OpenFileDialog("Template", ".dmp", "Template (.dmp)|*.dmp");
+            rtbTemplateText.Document = wrapper.LoadTemplateDataAndReturnDocument(filePath);
         }
 
         private void btImportCSV_Click(object sender, RoutedEventArgs e)
         {
-            dataWrapper.LoadDumpData(OpenFileDialog("Data", ".csv", "CSV  (.csv)|*.csv"));
+            string filePath = OpenFileDialog("Data", ".csv", "CSV  (.csv)|*.csv");
+            wrapper.LoadCsvData(filePath);
             FillDataGrid();
         }
 
         private void btGenerateDumps_Click(object sender, RoutedEventArgs e)
         {
-            dataWrapper.GenerateDump(dataTemplate, true);
+            wrapper.GenerateDump(true);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ContinuumDump.Common;
+using System.Collections.Generic;
 using System.Windows.Controls;
 
 namespace ContinuumDump
@@ -18,7 +19,7 @@ namespace ContinuumDump
         public ParamValue(string Value)
         {
             this.Value = Value;
-            this.State = ParamState.ps_UnPaired;
+            State = ParamState.UnPaired;
         }
     }
 }

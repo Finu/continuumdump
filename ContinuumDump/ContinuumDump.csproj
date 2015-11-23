@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\Observable.cs" />
+    <Compile Include="Common\TemplateHelper.cs" />
+    <Compile Include="Common\Wrapper.cs" />
     <Compile Include="ViewModel\SingleDumpViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -65,9 +68,7 @@
     </Compile>
     <Compile Include="Class\CSVParam.cs" />
     <Compile Include="Model\SingleDumpModel.cs" />
-    <Compile Include="ViewModel\DataWrapper.cs" />
-    <Compile Include="Common\Common.cs" />
-    <Compile Include="Class\DataTemplate.cs" />
+    <Compile Include="Common\ParamState.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

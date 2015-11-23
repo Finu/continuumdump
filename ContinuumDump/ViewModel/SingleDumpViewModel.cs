@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using ContinuumDump.Common;
+using System.Collections.ObjectModel;
 
 namespace ContinuumDump
 {
-    public class SingleDumpDataViewModel : INotifyPropertyChanged
+    public class SingleDumpDataViewModel : Observable
     {
         private ObservableCollection<CSVParam> csvparam;
 
@@ -15,16 +15,6 @@ namespace ContinuumDump
         public SingleDumpDataViewModel(SingleDumpModel SingleDump)
         {
             csvparam = new ObservableCollection<CSVParam>(SingleDump.Parameters);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
         }
     }
 }

@@ -17,15 +17,12 @@
             <Button Content="Import Source (.csv)  " Click="btImportCSV_Click" />
             <Button Content="Generate" Click="btGenerateDumps_Click" />
         </ToolBar>
-        <RichTextBox x:Name="rtbTemplateText" Grid.Row="1" HorizontalAlignment="Stretch" />
-        <GridSplitter Grid.Row="1" 
-                      Width="5" 
-                      ShowsPreview="True" Grid.Column="1" HorizontalAlignment="Left"/>
+        <RichTextBox x:Name="rtbTemplateText" Grid.Row="1" HorizontalAlignment="Stretch"/>
+            <GridSplitter Grid.Row="1" Width="5" ShowsPreview="True" Grid.Column="1" HorizontalAlignment="Left"/>
         <DataGrid x:Name="dgData" 
                   Grid.Column="1" 
                   Grid.Row="1" 
-                  ItemsSource="{Binding Path=DumpDataCollectionVM}" 
+                  ItemsSource="{Binding Path=CsvDataCollectionVM}" 
                   HorizontalAlignment="Stretch" Margin="5,0,0,0"/>
-
     </Grid>
 </Window>
